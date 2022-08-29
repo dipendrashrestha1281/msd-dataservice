@@ -7,9 +7,7 @@ node {
         sh 'gradle build'
     }
     
-    stage ("Gradle Bootjar-Package -DataService") {
-    	sh 'gradle bootjar'
-    }
+    
     	
     stage ("Containerize the app-docker build -DataService") {
     	sh 'docker build --rm -t dataapi:v1.0 .'
