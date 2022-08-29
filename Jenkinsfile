@@ -1,6 +1,6 @@
 node {
     stage ("Checkout DataService"){
-        git url: 'https://github.com/dipendrashrestha1281/msd-dataservice.git'
+         git branch: 'main', url: 'https://github.com/dipendrashrestha1281/msd-dataservice'
     }
     
     stage ("Gradle Build - DataService") {
