@@ -1,18 +1,18 @@
 node {
     stage ("Checkout DataService"){
-        git url: 'https://github.com/dipendrashrestha1281/teamCDproject.git'
+        git url: 'https://github.com/dipendrashrestha1281/msd-dataservice.git'
     }
     
     stage ("Gradle Build - DataService") {
-        sh 'gradle -b teamCD1mccdataservice/build.gradle clean build'
+        sh 'gradle clean build'
     }
     
     stage ("Gradle Bootjar-Package -DataService") {
-    	sh 'gradle -b teamCD1mccdataservice/build.gradle bootjar'
+    	sh 'gradle bootjar'
     }
     	
     stage ("Containerize the app-docker build -DataService") {
-    	sh 'docker build --rm -t dataapi:v1.0 -f teamCD1mccdataservice/Dockerfile'
+    	sh 'docker build --rm -t dataapi:v1.0 .'
     }
     	
     stage ("Inspect the docker image -DataService") {
