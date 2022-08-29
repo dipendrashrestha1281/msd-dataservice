@@ -12,16 +12,16 @@ node {
     }
     	
     stage ("Containerize the app-docker build -DataService") {
-    	sh 'docker build --rm -t test-data:v1.0 .'
+    	sh 'docker build --rm -t test-dataapi:v1.0 .'
     }
     	
     stage ("Inspect the docker image -DataService") {
-    	sh "docker images test-api:v1.0"
-    	sh "docker inspect test-api:v1.0"
+    	sh "docker images test-dataapi:v1.0"
+    	sh "docker inspect test-dataapi:v1.0"
     }	
     
     stage ("Run docker conatiner instance - DataService") {
-    	sh "docker run -d --rm --name testapi -p 8080:8080 test-api:v1.0"
+    	sh "docker run -d --rm --name testdataapi -p 8080:8080 test-dataapi:v1.0"
     }
     
     
@@ -33,7 +33,7 @@ node {
 	
 	  if(response=="Yes") {
 	    stage('Deploy to Kubernetes cluster - DataService') {
-	      sh "kubectl create deployment test-project-data --image=dataapi:v1.0"
+	      sh "kubectl create deployment test-project-data --image=test-dataapi:v1.0"
 	      sh "kubectl expose deployment test-project-data --type=LoadBalancer --port=8000"
 	    }
 	  }
