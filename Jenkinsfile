@@ -4,7 +4,7 @@ node {
     }
     
     stage ("Gradle Build - DataService") {
-        sh 'gradle clean build'
+        sh 'gradle build'
     }
     
     stage ("Gradle Bootjar-Package -DataService") {
